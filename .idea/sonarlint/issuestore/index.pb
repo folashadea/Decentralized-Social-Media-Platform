@@ -11,3 +11,5 @@ E
 tests/content.test.ts,7/2/72f454697cd4d9a41c95303fee7dd312a0ba4b44
 I
 contracts/moderation.clar,0/c/0c469d0a60b469ff0fb111195486660d6ac112e9
+H
+tests/moderation.test.ts,c/7/c7b8967854f946a19675fe12af59bc132e4fb550
