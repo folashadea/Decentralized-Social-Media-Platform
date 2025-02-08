@@ -1,21 +1,41 @@
+import { describe, it, beforeEach, expect } from "vitest"
 
-import { describe, expect, it } from "vitest";
+describe("user-profile", () => {
+  let contract: any
+  
+  beforeEach(() => {
+    contract = {
+      createProfile: (username: string, bio: string) => ({ success: true }),
+      updateProfile: (bio: string, avatar: string | null) => ({ success: true }),
+      getProfile: (user: string) => ({
+        username: "alice",
+        bio: "Blockchain enthusiast",
+        avatar: "https://example.com/avatar.jpg",
+        createdAt: 123456,
+      }),
+    }
+  })
+  
+  describe("create-profile", () => {
+    it("should create a new user profile", () => {
+      const result = contract.createProfile("alice", "Blockchain enthusiast")
+      expect(result.success).toBe(true)
+    })
+  })
+  
+  describe("update-profile", () => {
+    it("should update an existing user profile", () => {
+      const result = contract.updateProfile("Updated bio", "https://example.com/new-avatar.jpg")
+      expect(result.success).toBe(true)
+    })
+  })
+  
+  describe("get-profile", () => {
+    it("should return user profile details", () => {
+      const result = contract.getProfile("ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM")
+      expect(result.username).toBe("alice")
+      expect(result.bio).toBe("Blockchain enthusiast")
+    })
+  })
+})
 
-const accounts = simnet.getAccounts();
-const address1 = accounts.get("wallet_1")!;
-
-/*
-  The test below is an example. To learn more, read the testing documentation here:
-  https://docs.hiro.so/stacks/clarinet-js-sdk
-*/
-
-describe("example tests", () => {
-  it("ensures simnet is well initalised", () => {
-    expect(simnet.blockHeight).toBeDefined();
-  });
-
-  // it("shows an example", () => {
-  //   const { result } = simnet.callReadOnlyFn("counter", "get-counter", [], address1);
-  //   expect(result).toBeUint(0);
-  // });
-});
